@@ -3,7 +3,7 @@ import os
 import numpy as np
 
 from pprint import pprint
-from .checker import Checker
+from checker import Checker
 
 
 class Board(pygame.sprite.Sprite):
