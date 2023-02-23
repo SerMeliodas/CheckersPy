@@ -3,7 +3,7 @@ import os
 import numpy as np
 
 from pprint import pprint
-from checker import Checker
+from .checker import Checker
 
 
 class Board(pygame.sprite.Sprite):
@@ -18,7 +18,6 @@ class Board(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect(topleft = (0, 0))
         self.board = self.init()
-        pprint(self.board)
 
     def init(self):
 
@@ -34,7 +33,7 @@ class Board(pygame.sprite.Sprite):
             for col in range(8):
                 if row < 3:
                     create_checkers(row, col, board)
-                
+
                 if row > 4:
                     create_checkers(row, col, board)
 
@@ -44,3 +43,5 @@ class Board(pygame.sprite.Sprite):
     def draw(self):
         surface = pygame.display.get_surface()
         surface.blit(self.image, self.rect)
+
+        self.checker_group.draw(surface)

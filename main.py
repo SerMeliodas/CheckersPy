@@ -1,4 +1,4 @@
-from game import Game
+from client import Game
 
 from dotenv import load_dotenv
 import os

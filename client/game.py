@@ -4,7 +4,7 @@ import sys
 from dotenv import load_dotenv
 import os
 
-from board import Board
+from .board import Board
 
 
 class Game:
