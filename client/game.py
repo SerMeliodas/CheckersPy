@@ -2,9 +2,8 @@ import pygame
 import sys
 
 from dotenv import load_dotenv
-import os
-
 from board import Board
+from player import Player
 
 
 class Game:
@@ -17,10 +16,16 @@ class Game:
 
         self.board = Board(self.size[0])
 
+        self.oponent = Player("white", self.board.white_checkers.sprites())
+        self.main = Player("black", self.board.black_checkers.sprites())
+
     def event_loop(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+
+            self.main.event_listen(event)
+
 
     def run(self):
         while True:

@@ -1,3 +1,4 @@
+from ctypes import pythonapi
 import pygame
 import os
 import numpy as np
@@ -10,7 +11,8 @@ class Board(pygame.sprite.Sprite):
     def __init__(self, board_size: int):
         super().__init__()
 
-        self.checker_group = pygame.sprite.Group()
+        self.white_checkers = pygame.sprite.Group()
+        self.black_checkers = pygame.sprite.Group()
 
         self.image = pygame.image.load(os.getenv("BOARD_IMAGE", ""))
         self.image = pygame.transform.scale_by(
@@ -21,21 +23,24 @@ class Board(pygame.sprite.Sprite):
 
     def init(self):
 
-        def create_checkers(row: int, col: int, board: list):
+        def create_checkers(row: int, col: int, color, board):
             if row % 2 == 0 and col % 2 == 0:
-                board[row][col] = Checker((row, col), self.checker_group)
+                board[row][col] = Checker(color,
+                                          (row, col), 
+                                          self.white_checkers if color == 'white' else self.black_checkers)
             if row % 2 != 0 and col % 2 != 0:
-                board[row][col] = Checker((row, col), self.checker_group)
-
+                board[row][col] = Checker(color, 
+                                          (row, col), 
+                                          self.white_checkers if color == 'white' else self.black_checkers)
         board = np.zeros((8, 8), dtype=object)
 
         for row in range(8):
             for col in range(8):
                 if row < 3:
-                    create_checkers(row, col, board)
+                    create_checkers(row, col, 'white', board)
 
                 if row > 4:
-                    create_checkers(row, col, board)
+                    create_checkers(row, col, 'grey', board)
 
         return board
 
@@ -44,4 +49,5 @@ class Board(pygame.sprite.Sprite):
         surface = pygame.display.get_surface()
         surface.blit(self.image, self.rect)
 
-        self.checker_group.draw(surface)
+        self.white_checkers.draw(surface)
+        self.black_checkers.draw(surface)
