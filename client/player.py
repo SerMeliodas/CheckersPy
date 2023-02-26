@@ -1,11 +1,8 @@
 import pygame
-from colorValue import ColorValue
 from checker import Checker
 
 
 class Player:
-    color = ColorValue()
-
     def __init__(self, color: str, checkers: list[Checker]):
         self.beated_checkers = 0
         self.color = color

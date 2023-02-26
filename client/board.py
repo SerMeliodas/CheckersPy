@@ -1,4 +1,3 @@
-from ctypes import pythonapi
 import pygame
 import os
 import numpy as np

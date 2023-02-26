@@ -16,15 +16,15 @@ class Game:
 
         self.board = Board(self.size[0])
 
-        self.oponent = Player("white", self.board.white_checkers.sprites())
-        self.main = Player("black", self.board.black_checkers.sprites())
+        self.oponent_player = Player("white", self.board.white_checkers.sprites())
+        self.player = Player("grey", self.board.black_checkers.sprites())
 
     def event_loop(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
 
-            self.main.event_listen(event)
+            self.player.event_listen(event)
 
 
     def run(self):

@@ -1,6 +1,8 @@
 import pygame
 import os
 
+from colorValue import ColorValue
+
 
 class Checker(pygame.sprite.Sprite):
     def __init__(self, color: str, pos: tuple, group):
@@ -23,5 +25,3 @@ class Checker(pygame.sprite.Sprite):
                            (self.__cell_size / 2, self.__cell_size / 2), 
                            self.__cell_size / 2 - self.__cell_pading)
 
-    def move(self):
-        pass
